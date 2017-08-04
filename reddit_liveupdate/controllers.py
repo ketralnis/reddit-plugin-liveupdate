@@ -17,7 +17,6 @@ from r2.controllers.oauth2 import require_oauth2_scope
 from r2.controllers.reddit_base import (
     MinimalController,
     RedditController,
-    base_listing,
     paginated_listing,
 )
 from r2.lib import hooks, baseplate_integration
@@ -414,7 +413,7 @@ class LiveUpdateController(RedditController):
         return pages.LiveUpdateEventPage(content=content).render()
 
     @require_oauth2_scope("read")
-    @base_listing
+    @paginated_listing()
     @api_doc(
         section=api_section.live,
         uri="/live/{thread}/discussions",
